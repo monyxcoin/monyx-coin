@@ -1,0 +1,11 @@
+[Unit]
+Description=Monyx daemon serivce
+After=network.target
+
+[Service]
+Type=simple
+User=Monyx
+ExecStart=/opt/Monyx/Monyxd
+
+[Install]
+WantedBy=multi-user.target

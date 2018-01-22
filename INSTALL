@@ -1,0 +1,9 @@
+Building Monyx
+
+See doc/readme-qt.rst for instructions on building Monyx Qt,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of Monyx.
+
+See doc/build-*.txt for instructions on building Monyxd,
+the intended-for-services, no-graphical-interface, reference
+implementation of Monyx.

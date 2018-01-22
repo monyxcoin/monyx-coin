@@ -1,0 +1,5 @@
+Monyx-qt usr/bin
+share/pixmaps/Monyx32.xpm usr/share/pixmaps
+share/pixmaps/Monyx80.xpm usr/share/pixmaps
+debian/Monyx-qt.desktop usr/share/applications
+debian/Monyx-qt.protocol usr/share/kde4/services/

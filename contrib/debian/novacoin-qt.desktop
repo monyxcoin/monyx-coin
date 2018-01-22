@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Monyx
+Comment=Monyx P2P Cryptocurrency
+Comment[ru]=Monyx, P2P криптовалюта
+Comment[fr]=Monyx, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Monyx, eşten eşe kriptografik sanal para birimi
+Exec=/usr/bin/Monyx-qt
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/Monyx80.xpm
+MimeType=x-scheme-handler/Monyx;
+Categories=Office;
