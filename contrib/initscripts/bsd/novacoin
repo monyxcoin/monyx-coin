@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# PROVIDE: Monyx
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# Monyx_enable (bool): Set to NO by default. Set this variable to YES if you want to enable Monyx service.
+# Monyx_config (path): Set to /usr/local/etc/Monyx.conf by default.
+# Monyx_user:  The user account Monyx daemon runs as. It uses 'root' user by default.
+# Monyx_group: The group account Monyx daemon runs as. It uses 'wheel' group by default.
+# Monyx_datadir (str): Default to "/var/db/Monyx". Base data directory.
+
+. /etc/rc.subr
+
+name=Monyx
+rcvar=Monyx_enable
+
+: ${Monyx_enable:=NO}
+: ${Monyx_config=/usr/local/etc/Monyx.conf}
+: ${Monyx_datadir=/var/db/Monyx}
+: ${Monyx_user="root"}
+: ${Monyx_group="wheel"}
+
+required_files=${Monyx_config}
+command=/usr/local/bin/Monyxd
+Monyx_chdir=${Monyx_datadir}
+pidfile="${Monyx_datadir}/Monyxd.pid"
+stop_cmd=Monyx_stop
+command_args="-conf=${Monyx_config} -datadir=${Monyx_datadir} -daemon -pid=${pidfile}"
+start_precmd="${name}_prestart"
+
+Monyx_create_datadir()
+{
+	echo "Creating data directory"
+	eval mkdir -p ${Monyx_datadir}
+	[ $? -eq 0 ] && chown -R ${Monyx_user}:${Monyx_group} ${Monyx_datadir}
+}
+
+Monyx_prestart()
+{
+	if [ ! -d "${Monyx_datadir}/." ]; then
+		Monyx_create_datadir || return 1
+	fi
+}
+
+Monyx_requirepidfile()
+{
+	if [ ! "0`check_pidfile ${pidfile} ${command}`" -gt 1 ]; then
+		echo "${name} not running? (check $pidfile)."
+		exit 1
+	fi
+}
+
+Monyx_stop()
+{
+    Monyx_requirepidfile
+
+	echo "Stopping ${name}."
+	eval ${command} -conf=${Monyx_config} -datadir=${Monyx_datadir} stop
+	wait_for_pids ${rc_pid}
+}
+
+load_rc_config $name
+run_rc_command "$1"

@@ -1,0 +1,57 @@
+Source: Monyx
+Section: utils
+Priority: optional
+Maintainer: Alex D. <balthazar.ad@gmail.com>
+Uploaders: Alex D. <balthazar.ad@gmail.com>
+Build-Depends: debhelper,
+ devscripts,
+ bash-completion,
+ libboost-system-dev,
+ libdb++-dev,
+ libssl-dev,
+ pkg-config,
+ libboost-filesystem-dev,
+ libboost-program-options-dev,
+ libboost-thread-dev,
+ qt4-qmake,
+ libqt4-dev,
+ libqrencode-dev
+Standards-Version: 3.9.2
+Homepage: http://monyx.io/
+Vcs-Git: git@github.com:monyxcoin/monyx-coin.git
+Vcs-Browser: https://github.com/monyxcoin/monyx-coin
+
+Package: Monyxd
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer network based digital currency - daemon
+ Monyx is a free open source peer-to-peer electronic cash system that
+ is completely decentralized, without the need for a central server or
+ trusted parties.  Users hold the crypto keys to their own money and
+ transact directly with each other, with the help of a P2P network to
+ check for double-spending.
+ .
+ By default connects to an IRC network to discover other peers.
+ .
+ Full transaction history is stored locally at each client.  This
+ requires 150+ MiB of space, slowly growing.
+ .
+ This package provides Monyxd, a combined daemon and CLI tool to
+ interact with the daemon.
+
+Package: Monyx-qt
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer network based digital currency - Qt GUI
+ Monyx is a free open source peer-to-peer electronic cash system that
+ is completely decentralized, without the need for a central server or
+ trusted parties.  Users hold the crypto keys to their own money and
+ transact directly with each other, with the help of a P2P network to
+ check for double-spending.
+ .
+ By default connects to an IRC network to discover other peers.
+ .
+ Full transaction history is stored locally at each client.  This
+ requires 150+ MiB of space, slowly growing.
+ .
+ This package provides Monyx-Qt, a GUI for Monyx based on Qt.
