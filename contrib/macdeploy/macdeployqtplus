@@ -347,6 +347,9 @@ def deployFrameworksForAppBundle(applicationBundle, strip, verbose):
 def deployPlugins(appBundleInfo, deploymentInfo, strip, verbose):
     # Lookup available plugins, exclude unneeded
     plugins = []
+    if deploymentInfo.pluginPath == None:
+        return
+
     for dirpath, dirnames, filenames in os.walk(deploymentInfo.pluginPath):
         pluginDirectory = os.path.relpath(dirpath, deploymentInfo.pluginPath)
         if pluginDirectory == "designer":

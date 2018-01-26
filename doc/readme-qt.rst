@@ -131,8 +131,16 @@ FreeDesktop notification interface through DBUS using the following qmake option
 Generation of QR codes
 -----------------------
 
-libqrencode is used to generate QRCode images for payment requests.
+libqrencode 3.4.4 is used to generate QRCode images for payment requests.
 It can be downloaded from http://fukuchi.org/works/qrencode/index.html.en, or installed via your package manager.
+After downloaded:
+
+./configure --enable-static --disable-shared --without-tools
+make
+
+
+For OSx use:
+./configure --enable-static --disable-shared --without-tools CFLAGS="-mmacosx-version-min=10.7" CXXFLAGS="-mmacosx-version-min=10.7"
 
 Berkely DB version warning
 ==========================
