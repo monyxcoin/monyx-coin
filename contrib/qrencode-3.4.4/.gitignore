@@ -3,3 +3,4 @@
 *.lo
 stamp-h1
 *.la
+config.log

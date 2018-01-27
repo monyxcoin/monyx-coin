@@ -69,16 +69,10 @@ isEmpty(BOOST_LIB_PATH) {
 isEmpty(BOOST_INCLUDE_PATH) {
     macx:BOOST_INCLUDE_PATH = /opt/local/include
 }
-isEmpty(QRENCODE_LIB_PATH) {
-    macx:QRENCODE_LIB_PATH = /opt/local/lib
-}
 isEmpty(QRENCODE_INCLUDE_PATH) {
-    macx:QRENCODE_INCLUDE_PATH = /opt/local/include
-}
-isEmpty(QRENCODE_LIB_PATH) {
     QRENCODE_INCLUDE_PATH=contrib/qrencode-3.4.4
 }
-isEmpty(QRENCODE_INCLUDE_PATH) {
+isEmpty(QRENCODE_LIB_PATH) {
     QRENCODE_LIB_PATH=contrib/qrencode-3.4.4/.libs
 }
 
@@ -536,13 +530,7 @@ INCLUDEPATH += $$BOOST_INCLUDE_PATH $$BDB_INCLUDE_PATH $$OPENSSL_INCLUDE_PATH $$
 LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
 
 # Handle qrencode lib
-windows:macx {
-    LIB_QRENCODE = -lqrencode
-}
-isEmpty(QRENCODE_INCLUDE_PATH) {
-    LIB_QRENCODE = $$QRENCODE_LIB_PATH/libqrencode.a
-}
-LIBS += $$LIB_QRENCODE
+LIBS += $$QRENCODE_LIB_PATH/libqrencode.a -lqrencode
 
 LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
 # -lgdi32 has to happen after -lcrypto (see  #681)
