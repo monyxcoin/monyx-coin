@@ -28,6 +28,14 @@ for Ubuntu >= 12.04 (please read the 'Berkely DB version warning' below):
         libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev \
         libssl-dev libdb++-dev
 
+Compile leveldb:
+
+cd src/leveldb
+chmod +x build_detect_platform
+make clean
+make libleveldb.a libmemenv.a
+
+
 then execute the following:
 
 ::
@@ -131,9 +139,9 @@ FreeDesktop notification interface through DBUS using the following qmake option
 Generation of QR codes
 -----------------------
 
-libqrencode 3.4.4 is used to generate QRCode images for payment requests.
-It can be downloaded from http://fukuchi.org/works/qrencode/index.html.en, or installed via your package manager.
-After downloaded:
+libqrencode 3.4.4 is used to generate QRCode images for payment requests and store in /contrib.
+
+To compile:
 
 ./configure --enable-static --disable-shared --without-tools
 make

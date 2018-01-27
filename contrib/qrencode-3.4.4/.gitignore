@@ -1,0 +1,5 @@
+.deps
+.libs
+*.lo
+stamp-h1
+*.la
