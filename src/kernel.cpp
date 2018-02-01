@@ -490,6 +490,7 @@ CheckProofOfStake(const CTransaction &tx, unsigned int nBits, uint256 &hashProof
 
 // Get stake modifier checksum
 uint32_t GetStakeModifierChecksum(const CBlockIndex *pindex) {
+    printf("%s", pindex->GetBlockHash().GetHex().c_str());
     assert (pindex->pprev || pindex->GetBlockHash() == (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet));
     // Hash previous checksum with flags, hashProofOfStake and nStakeModifier
     CDataStream ss(SER_GETHASH, 0);
