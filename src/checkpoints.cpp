@@ -23,9 +23,7 @@ namespace Checkpoints {
     //
     static MapCheckpoints mapCheckpoints =
             boost::assign::map_list_of
-                    (0, std::make_pair(hashGenesisBlock, 1516802555))
-                    (41, std::make_pair(uint256("0x000000e8ca714f0c59fce10563e3f0927ca9b65bd8275d73e485113ec21c8eaf"),
-                                       1516822397));
+                    (0, std::make_pair(hashGenesisBlock, 1517504499));
 
     // TestNet has no checkpoints
     static MapCheckpoints mapCheckpointsTestnet =
@@ -190,7 +188,7 @@ namespace Checkpoints {
         return false;
     }
 
-    // Automatically select a suitable sync-checkpoint 
+    // Automatically select a suitable sync-checkpoint
     uint256 AutoSelectSyncCheckpoint() {
         const CBlockIndex *pindex = pindexBest;
         // Search backward for a block within max span and maturity window

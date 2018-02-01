@@ -63,7 +63,7 @@ static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20
 // Maximum number of script-checking threads allowed
 static const int MAX_SCRIPTCHECK_THREADS = 16;
 
-static const uint256 hashGenesisBlock("0x000005f6c69dd8e8d7dd693f13e66c6cdf9a74ea872a3fe1821b49667ba7a648");
+static const uint256 hashGenesisBlock("0x0000001b1255acc9c9310c4a4559cf7c3cef26ecbe3118fe1d6c2089f92554b1");
 static const uint256 hashGenesisBlockTestNet("0x000c763e402f2436da9ed36c7286f62c3f6e5dbafce9ff289bd43d7459327eb");
 
 inline int64_t PastDrift(int64_t nTime) { return nTime - ((2 * 3 + 10) * 60); } // up to this from the past
@@ -881,7 +881,7 @@ public:
 class CBlock {
 public:
     // header
-    static const int CURRENT_VERSION = 7;
+    static const int CURRENT_VERSION = 8;
     int32_t nVersion;
     uint256 hashPrevBlock;
     uint256 hashMerkleRoot;

@@ -77,7 +77,7 @@ map<uint256, set<uint256> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Monyx2.0 Signed Message:\n";
+const string strMessageMagic = "Monyx3.0 Signed Message:\n";
 
 // Settings
 int64_t nTransactionFee = MIN_TX_FEE;
@@ -402,7 +402,7 @@ unsigned int
 CTransaction::GetLegacySigOpCount() const {
     unsigned int nSigOps = 0;
     if (!IsCoinBase() || nTime < COINBASE_SIGOPS_SWITCH_TIME) {
-        // Coinbase scriptsigs are never executed, so there is 
+        // Coinbase scriptsigs are never executed, so there is
         //    no sense in calculation of sigops.
         BOOST_FOREACH(const CTxIn &txin, vin) {
                         nSigOps += txin.scriptSig.GetSigOpCount(false);
@@ -1879,7 +1879,7 @@ bool CBlock::SetBestChain(CTxDB &txdb, CBlockIndex *pindexNew) {
 // ppcoin: total coin age spent in transaction, in the unit of coin-days.
 // Only those coins meeting minimum age requirement counts. As those
 // transactions not in main chain are not currently indexed so we
-// might not find out about their coin age. Older transactions are 
+// might not find out about their coin age. Older transactions are
 // guaranteed to be in main chain by sync-checkpoint. This rule is
 // introduced to help nodes establish a consistent view of the coin
 // age (trust score) of competing branches.
@@ -2042,7 +2042,7 @@ bool CBlock::CheckBlock(bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig) c
     nSigOps += vtx[0].GetLegacySigOpCount();
 
     if (fProofOfStake) {
-        // Proof-of-STake related checkings. Note that we know here that 1st transactions is coinstake. We don't need 
+        // Proof-of-STake related checkings. Note that we know here that 1st transactions is coinstake. We don't need
         //   check the type of 1st transaction because it's performed earlier by IsProofOfStake()
 
         // nNonce must be zero for proof-of-stake blocks
@@ -2081,7 +2081,7 @@ bool CBlock::CheckBlock(bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig) c
             return DoS(50, error("CheckBlock() : coinbase timestamp is too late"));
     }
 
-    // Iterate all transactions starting from second for proof-of-stake block 
+    // Iterate all transactions starting from second for proof-of-stake block
     //    or first for proof-of-work block
     for (unsigned int i = fProofOfStake ? 2 : 1; i < vtx.size(); i++) {
         const CTransaction &tx = vtx[i];
@@ -2552,9 +2552,9 @@ bool LoadBlockIndex(bool fAllowNew) {
         if (!fAllowNew)
             return false;
 
-        const char *pszTimestamp = "MONYX GENESIS!";
+        const char *pszTimestamp = "MONYX3.0 GENESIS!";
         CTransaction txNew;
-        txNew.nTime = 1516802555;
+        txNew.nTime = 1517504499;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CBigNum(9999)
@@ -2567,7 +2567,7 @@ bool LoadBlockIndex(bool fAllowNew) {
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime = 1516802555;
+        block.nTime = 1517504499;
         block.nBits = bnProofOfWorkLimit.GetCompact();
         block.nNonce = 1315065; // !fTestNet ? 1575379 : 46534;
 
@@ -2585,9 +2585,10 @@ bool LoadBlockIndex(bool fAllowNew) {
             }
         }
         block.print();
+        printf("%s", block.hashMerkleRoot.GetHex().c_str());
 
         //// debug print
-        assert(block.hashMerkleRoot == uint256("0x758d4790e3a8b2bbab9766fa072b31cb4f083dfdae5f7e122941bf39f12148b6"));
+        assert(block.hashMerkleRoot == uint256("0xe618e76333762ae2a9642a3813b1f215addce3b09dc150d6981715f701c03a2c"));
         assert(block.GetHash() == (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet));
         assert(block.CheckBlock());
 
