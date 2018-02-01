@@ -35,6 +35,8 @@ chmod +x build_detect_platform
 make clean
 make libleveldb.a libmemenv.a
 
+Compile qrencode (see below).
+
 
 then execute the following:
 
@@ -148,7 +150,7 @@ make
 
 
 For OSx use:
-./configure --enable-static --disable-shared --without-tools CFLAGS="-mmacosx-version-min=10.7" CXXFLAGS="-mmacosx-version-min=10.7"
+./configure --enable-static --disable-shared --without-tools CFLAGS="-mmacosx-version-min=10.7 -arch x86_64 -isysroot $(xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk" CXXFLAGS="-mmacosx-version-min=10.7 -arch x86_64 -isysroot $(xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"
 
 Berkely DB version warning
 ==========================

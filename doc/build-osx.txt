@@ -96,6 +96,8 @@ All dependencies should be compiled with these flags:
  -arch x86_64
  -isysroot $(xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk
 
+You need to install macos sdk 10.7 via https://github.com/devernay/xcodelegacy and link Xcode .../Platforms/Macos/Developers directory to /Developers.
+
 Once dependencies are compiled, you can create the .dmg disk image:
 
 ./contrib/macdeploy/macdeployqtplus Monyx-Qt.app -dmg -fancy ./contrib/macdeploy/fancy.plist
